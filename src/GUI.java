@@ -38,7 +38,7 @@ public class GUI {
 
         background[1] = new JPanel();
         background[1].setBounds(50,185,800,350);
-        background[1].setBackground(Color.orange);
+        background[1].setBackground(Color.black);
         background[1].setLayout(null);
         window.add(background[1]);
         backgroundLabel[1] = new JLabel();
