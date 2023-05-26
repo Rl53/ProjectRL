@@ -12,7 +12,7 @@ public class GUI {
     public GUI(GameManager g){
         this.g = g;
         createField();
-        makeBG();
+        makeScreen();
         window.setVisible(true);
     }
 
@@ -34,15 +34,36 @@ public class GUI {
         window.add(message);
     }
 
-    public void makeBG(){
+    public void makeBG(int num, String bgFile){
 
-        background[1] = new JPanel();
-        background[1].setBounds(50,185,800,350);
-        background[1].setBackground(Color.black);
-        background[1].setLayout(null);
+        background[num] = new JPanel();
+        background[num].setBounds(50,185,800,350);
+        background[num].setBackground(Color.black);
+        background[num].setLayout(null);
         window.add(background[1]);
         backgroundLabel[1] = new JLabel();
         backgroundLabel[1].setBounds(0,0,800,350);
+
+        ImageIcon bgI = new ImageIcon(getClass().getClassLoader().getResource(bgFile));
+        backgroundLabel[1].setIcon(bgI);
+    }
+
+    public void createObj(int num, int x, int y, int width, int height, String fileName) {
+
+        JLabel objLabel = new JLabel();
+        objLabel.setBounds(x,y,width,height);
+
+
+        ImageIcon objIcon = new ImageIcon(getClass().getClassLoader().getResource(fileName));
+        objLabel.setIcon(objIcon);
+
+        background[num].add(objLabel);
+        background[num].add(backgroundLabel[1]);
+    }
+
+    public void makeScreen(){
+        makeBG(1,"wood-3072434_1280.jpg");
+        createObj(1,100,0,600,800,"bagi652r8p5rtheitedk0vmidk.png");
     }
 }
 
