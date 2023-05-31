@@ -20,10 +20,17 @@ public class ActionHandler implements ActionListener {
         }
         String myChoice = e.getActionCommand();
         switch (myChoice) {
-            case "goBG2": g.sceneChanger.showScreen2();
-            case "talkMore": g.ui.message.setText(dialogue);
-//            if (text < 4) {
+            case "talkMore":
+                g.ui.message.setText(dialogue);
                 text++;
+                break;
+            case "goBG2":
+                g.sceneChanger.showScreen2();
+                break;
+
+
+//            if (text < 4) {
+               // text++;
             //}
 
         }

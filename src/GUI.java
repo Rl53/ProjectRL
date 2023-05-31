@@ -85,7 +85,7 @@ public class GUI {
     }
     public void makeScene(){
         makeBG(1,"wood-3072434_1280_40.jpg");
-        createObj(1,250,-185,600,800,"bagi652r8p5rtheitedk0vmidk_50.png","talkMore");
+        createObj(1,450,20,350,400,"bagi652r8p5rtheitedk0vmidk_50.png","talkMore");
         addArrow(1,275,170,100,100,"clipart21503_1_15.png","goBG2");
         background[1].add(backgroundLabel[1]);
 
