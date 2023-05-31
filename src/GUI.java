@@ -83,6 +83,7 @@ public class GUI {
         background[num].add(arrowButton);
 
     }
+
     public void makeScene(){
         makeBG(1,"wood-3072434_1280_40.jpg");
         createObj(1,450,20,350,400,"bagi652r8p5rtheitedk0vmidk_50.png","talkMore");
