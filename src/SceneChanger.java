@@ -13,5 +13,6 @@ public class SceneChanger {
     public void showScreen2() {
         g.ui.background[1].setVisible(false);
         g.ui.background[2].setVisible(true);
+        g.ui.message.setText("   You arrive at a cave.");
     }
 }

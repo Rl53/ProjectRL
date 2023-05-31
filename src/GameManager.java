@@ -6,9 +6,10 @@ public class GameManager{
 
         new GameManager();
 
+    }
 
-
-
+    public GameManager() {
+        sceneChanger.showScreen1();
 
     }
 }

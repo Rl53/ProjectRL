@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-// at 7:32 part 4 !!!!
+// at 18:05 part 4 !!!!
 
 public class GUI {
     GameManager g;
@@ -26,7 +26,7 @@ public class GUI {
         window.getContentPane().setBackground(Color.gray);
         window.setLayout(null);
 
-        message = new JTextArea("  TestT Imdwjdk");
+        message = new JTextArea("  Test 0");
         message.setBounds(50,35,800,150);
         message.setBackground(Color.darkGray);
         message.setForeground(Color.white);
@@ -51,48 +51,20 @@ public class GUI {
         backgroundLabel[num].setIcon(bgI);
     }
 
-    public void createObj(int num, int x, int y, int width, int height, String fileName, String choice, String command) {
+    public void createObj(int num, int x, int y, int width, int height, String fileName,String command) {
 
-        JPopupMenu popMenu = new JPopupMenu();
-        JMenuItem menuItem[] = new JMenuItem[4];
+        ImageIcon image = new ImageIcon(getClass().getClassLoader().getResource(fileName));
+        JButton objButton = new JButton();
+        objButton.setBounds(x,y,width,height);
+        objButton.setBackground(null);
+        objButton.setContentAreaFilled(false);
+        objButton.setFocusPainted(false);
+        objButton.setIcon(image);
+        objButton.addActionListener(g.handler);
+        objButton.setActionCommand(command);
+        objButton.setBorderPainted(false);
 
-        menuItem[1] = new JMenuItem(choice);
-        menuItem[1].addActionListener(g.handler);
-        menuItem[1].setActionCommand(command);
-        popMenu.add(menuItem[1]);
-
-        JLabel objLabel = new JLabel();
-        objLabel.setBounds(x,y,width,height);
-
-
-        ImageIcon objIcon = new ImageIcon(getClass().getClassLoader().getResource(fileName));
-        objLabel.setIcon(objIcon);
-
-        objLabel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)) {
-                    popMenu.show(objLabel,e.getX(),e.getY());
-                }
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
-
-        background[num].add(objLabel);
+        background[num].add(objButton);
 
     }
 
@@ -113,12 +85,12 @@ public class GUI {
     }
     public void makeScene(){
         makeBG(1,"wood-3072434_1280_40.jpg");
-        createObj(1,450,-185,600,800,"bagi652r8p5rtheitedk0vmidk_50.png","Continue","talkMore");
-        addArrow(1,-85,-200,800,800,"clipart21503_1_15.png","goBG2");
+        createObj(1,250,-185,600,800,"bagi652r8p5rtheitedk0vmidk_50.png","talkMore");
+        addArrow(1,275,170,100,100,"clipart21503_1_15.png","goBG2");
         background[1].add(backgroundLabel[1]);
 
         makeBG(2, "cave-2604672_1280.jpg");
-        addArrow(1,-85,-200,800,800,"clipart21503_1_15.png","goBG2");
+//        addArrow(1,-85,-200,800,800,"clipart21503_1_15.png","goBG1");
         background[2].add(backgroundLabel[2]);
     }
 
