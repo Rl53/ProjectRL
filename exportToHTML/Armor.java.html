@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Armor.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Armor.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">Armor{</span>
+  <span class="s0">int </span><span class="s1">defense</span><span class="s0">;</span>
+  <span class="s0">int </span><span class="s1">baseDefense</span><span class="s0">;</span>
+  <span class="s0">int </span><span class="s1">dodge</span><span class="s0">;</span>
+  <span class="s1">String upgrades</span><span class="s0">;</span>
+  <span class="s0">boolean </span><span class="s1">evading</span><span class="s0">;</span>
+
+  <span class="s0">public </span><span class="s1">Armor(){</span>
+    <span class="s1">defense = </span><span class="s2">3</span><span class="s0">;</span>
+    <span class="s1">baseDefense = </span><span class="s2">3</span><span class="s0">;</span>
+    <span class="s1">dodge = </span><span class="s2">10</span><span class="s0">;</span>
+    <span class="s1">upgrades = </span><span class="s3">&quot;&quot;</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public int </span><span class="s1">getDodge(){</span>
+    <span class="s0">if </span><span class="s1">(evading == </span><span class="s0">false</span><span class="s1">){</span>
+      <span class="s0">return </span><span class="s2">0</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">return </span><span class="s1">dodge</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  
+  <span class="s0">public int </span><span class="s1">getDefense(){</span>
+    <span class="s0">return </span><span class="s1">defense</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  
+  <span class="s0">public void </span><span class="s1">setDefense(</span><span class="s0">int </span><span class="s1">newer){</span>
+    <span class="s1">baseDefense = newer</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  
+  <span class="s0">public void </span><span class="s1">setDodge(</span><span class="s0">int </span><span class="s1">newer){</span>
+    <span class="s1">dodge = newer</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  
+  <span class="s0">public void </span><span class="s1">resetDefense(){</span>
+    <span class="s1">defense = baseDefense</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public void </span><span class="s1">reinforce(){</span>
+    <span class="s1">defense += baseDefense</span><span class="s0">;</span>
+    <span class="s1">}</span>
+  <span class="s0">public boolean </span><span class="s1">getEvading(){</span>
+    <span class="s0">return </span><span class="s1">evading</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public void </span><span class="s1">evadeToggle(</span><span class="s0">boolean </span><span class="s1">state){</span>
+    <span class="s0">if </span><span class="s1">(state){</span>
+      <span class="s1">evading = </span><span class="s0">true;</span>
+    <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+      <span class="s1">evading = </span><span class="s0">false;</span>
+    <span class="s1">}</span>
+  <span class="s1">}</span>
+
+  
+
+
+  
+<span class="s1">}</span></pre>
+</body>
+</html>

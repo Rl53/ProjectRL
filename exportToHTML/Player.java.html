@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Player.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Player.java</font>
+</center></td></tr></table>
+<pre><span class="s0">public class </span><span class="s1">Player{</span>
+  <span class="s0">int </span><span class="s1">maxHp</span><span class="s0">;</span>
+  <span class="s0">int </span><span class="s1">hp</span><span class="s0">;</span>
+  <span class="s1">Sword sword = </span><span class="s0">new </span><span class="s1">Sword()</span><span class="s0">;</span>
+  <span class="s1">Armor armor = </span><span class="s0">new </span><span class="s1">Armor()</span><span class="s0">;</span>
+
+  <span class="s0">public </span><span class="s1">Player(){</span>
+    <span class="s1">maxHp = </span><span class="s2">100</span><span class="s0">;</span>
+    <span class="s1">hp = </span><span class="s2">100</span><span class="s0">;</span>
+    
+  <span class="s1">}</span>
+ <span class="s0">public void </span><span class="s1">takeDamage(</span><span class="s0">int </span><span class="s1">damaged){</span>
+   <span class="s0">int </span><span class="s1">dodged = (</span><span class="s0">int</span><span class="s1">)((Math.random()*</span><span class="s2">100</span><span class="s1">)+</span><span class="s2">1</span><span class="s1">)</span><span class="s0">;</span>
+   <span class="s0">if </span><span class="s1">(armor.getDodge() &gt;= dodged){</span>
+     <span class="s1">damaged = </span><span class="s2">0</span><span class="s0">;</span>
+     <span class="s1">System.out.println(</span><span class="s3">&quot;You dodged the attack!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+   <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+    <span class="s1">hp -= (damaged - armor.getDefense())</span><span class="s0">;</span>
+    <span class="s1">System.out.println(</span><span class="s3">&quot;You take &quot;</span><span class="s1">+(damaged - armor.getDefense())+ </span><span class="s3">&quot; damage.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s0">if </span><span class="s1">(hp &lt;= </span><span class="s2">0</span><span class="s1">){</span>
+      <span class="s1">System.out.println(</span><span class="s3">&quot;You have died!&quot;</span><span class="s1">)</span><span class="s0">;</span>
+      <span class="s1">System.exit(</span><span class="s2">0</span><span class="s1">)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+   <span class="s1">}</span>
+  <span class="s1">}</span>
+  <span class="s0">public </span><span class="s1">Sword getSword(){</span>
+    <span class="s0">return </span><span class="s1">sword</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public int </span><span class="s1">getMax(){</span>
+    <span class="s0">return </span><span class="s1">maxHp</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public void </span><span class="s1">hpMore(</span><span class="s0">int </span><span class="s1">more){</span>
+    <span class="s1">hp += more</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public </span><span class="s1">Armor getArmor(){</span>
+    <span class="s0">return </span><span class="s1">armor</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public void </span><span class="s1">setMax(</span><span class="s0">int </span><span class="s1">newer){</span>
+    <span class="s1">maxHp = newer</span><span class="s0">;</span>
+  <span class="s1">}</span>
+  <span class="s0">public void </span><span class="s1">fullHp(){</span>
+    <span class="s1">hp = maxHp</span><span class="s0">;</span>
+  <span class="s1">}</span>
+
+
+
+
+
+
+  
+<span class="s1">}</span></pre>
+</body>
+</html>

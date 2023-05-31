@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Lair.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Lair.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java.util.Scanner</span><span class="s0">;</span>
+<span class="s0">public class </span><span class="s1">Lair{</span>
+<span class="s2">//   Room[] rooms;</span>
+<span class="s2">//</span>
+<span class="s2">//   Player player = new Player();</span>
+
+
+  <span class="s0">public </span><span class="s1">Lair(){</span>
+<span class="s2">//    rooms = new Room[10];</span>
+<span class="s2">//    for (int i = 0; i &lt; 10; i++){</span>
+<span class="s2">//      rooms[i] = new Room(i +1);</span>
+<span class="s2">//    }</span>
+<span class="s2">//    game();</span>
+  <span class="s1">}</span>
+
+<span class="s2">//  public void game(){</span>
+<span class="s2">//    System.out.println(&quot;You descend into a massive, scorched cavern, and encounter your first dragon.&quot;);</span>
+<span class="s2">//    for (int i = 0; i &lt; 10; i++){</span>
+<span class="s2">//      while (rooms[i].dragonsDead()==false){</span>
+<span class="s2">//</span>
+<span class="s2">//</span>
+<span class="s2">//        combatTurn(rooms[i].getDragons(),i);</span>
+<span class="s2">//</span>
+<span class="s2">//</span>
+<span class="s2">//</span>
+<span class="s2">//      }</span>
+<span class="s2">//      if (i == 9){</span>
+<span class="s2">//        System.out.println(&quot;You have slain the elder dragon and emerge from the cavern victorious!&quot;);</span>
+<span class="s2">//        System.exit(0);</span>
+<span class="s2">//      }</span>
+<span class="s2">//</span>
+<span class="s2">//      Upgrades.rewards(player);</span>
+<span class="s2">//      introduction(i);</span>
+<span class="s2">//    }</span>
+<span class="s2">//</span>
+<span class="s2">//  }</span>
+
+<span class="s2">//  public void introduction(int i){</span>
+<span class="s2">//    System.out.println(&quot;You walk into the next room of the lair and find &quot;+(rooms[i+1].getDragons()).length + &quot; Dragons before you.&quot;);</span>
+<span class="s2">//  }</span>
+
+
+  
+  <span class="s0">public void </span><span class="s1">combatTurn(Dragon[] dragons</span><span class="s0">, int </span><span class="s1">i){</span>
+<span class="s2">//    //Generate Breath Dialogue</span>
+<span class="s2">//    for (int b = 0; b &lt; dragons.length; b++){</span>
+<span class="s2">//      if(dragons[b].isBreath()== true){</span>
+<span class="s2">//        System.out.println(&quot;Dragon &quot;+(b+1)+&quot; is inhaling deeply.&quot;);</span>
+<span class="s2">//      }</span>
+<span class="s2">//    }</span>
+<span class="s2">//    //reset modified armor values</span>
+<span class="s2">//    player.getArmor().evadeToggle(false);</span>
+<span class="s2">//    player.getArmor().resetDefense();</span>
+<span class="s2">//    //loop for player actions</span>
+<span class="s2">//    for (int b = 3; b &gt; 0; b--){</span>
+<span class="s2">//    if (player.getArmor().getEvading()){</span>
+<span class="s2">//       System.out.println(&quot;You have &quot;+b+&quot; actions remaining,\&quot;attack\&quot; a dragon or \&quot;defend\&quot;&quot;);</span>
+<span class="s2">//    } else {</span>
+<span class="s2">//    System.out.println(&quot;You have &quot;+b+&quot; actions remaining,\&quot;attack\&quot; a dragon&quot;+&quot;, start to \&quot;evade\&quot;, &quot;+&quot;or \&quot;defend\&quot;&quot;);</span>
+<span class="s2">//    }</span>
+<span class="s2">//    String move = scan.nextLine();</span>
+<span class="s2">//      //attack code</span>
+<span class="s2">//    if (move.equals(&quot;attack&quot;)){</span>
+<span class="s2">//      rooms[i].targetList();</span>
+<span class="s2">//      int target = scan.nextInt();</span>
+<span class="s2">//      scan.nextLine();</span>
+<span class="s2">//      if (!(1 &lt;= target &amp;&amp; target &lt;= dragons.length)){</span>
+<span class="s2">//        System.out.println(&quot;For some reason, you attack a random spot of air.&quot;);</span>
+<span class="s2">//      } else {</span>
+<span class="s2">//        dragons[target-1].takeDamage(player.getSword().dealDamage(dragons[target-1].getElement()));</span>
+<span class="s2">//      }</span>
+<span class="s2">//      //defend code</span>
+<span class="s2">//    } else if (move.equals(&quot;defend&quot;)){</span>
+<span class="s2">//      player.getArmor().reinforce();</span>
+<span class="s2">//      System.out.println(&quot;You reinforce your armor.&quot;);</span>
+<span class="s2">//      //dodge code</span>
+<span class="s2">//    } else if (move.equals(&quot;evade&quot;)){</span>
+<span class="s2">//      player.getArmor().evadeToggle(true);</span>
+<span class="s2">//      System.out.println(&quot;You prepare to dodge attacks.&quot;);</span>
+<span class="s2">//      //if they mess up somehow</span>
+<span class="s2">//    } else {</span>
+<span class="s2">//      System.out.println(&quot;You waste an action doing some nonsense.&quot;);</span>
+<span class="s2">//    }</span>
+<span class="s2">//      if (rooms[i].dragonsDead()){</span>
+<span class="s2">//        break;</span>
+<span class="s2">//      }</span>
+<span class="s2">//    }</span>
+<span class="s2">//</span>
+<span class="s2">//    //dragon attacks</span>
+<span class="s2">//    if (rooms[i].dragonsDead()==false){</span>
+<span class="s2">//</span>
+<span class="s2">//    for (int b = 0; b &lt; dragons.length; b++){</span>
+<span class="s2">//      if (dragons[b].isDead()!= true){</span>
+<span class="s2">//      player.takeDamage(dragons[b].attack(b));</span>
+<span class="s2">//      }</span>
+<span class="s2">//</span>
+<span class="s2">//    }</span>
+<span class="s2">//    }</span>
+  <span class="s1">}</span>
+
+
+
+
+
+  
+<span class="s1">}</span></pre>
+</body>
+</html>

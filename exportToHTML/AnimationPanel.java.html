@@ -1,0 +1,289 @@
+<html>
+<head>
+<title>AnimationPanel.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #808080;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AnimationPanel.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java.awt.*</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionEvent</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.ActionListener</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.MouseEvent</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.MouseListener</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.awt.event.MouseMotionListener</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">javax.swing.*</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">java.awt.Font.BOLD</span><span class="s0">;</span>
+
+<span class="s2">// a subclass of JPanel; this panel has been designed entirely in code (not using the UI designer)</span>
+<span class="s0">public class </span><span class="s1">AnimationPanel </span><span class="s0">extends </span><span class="s1">JPanel </span><span class="s0">implements </span><span class="s1">ActionListener</span><span class="s0">, </span><span class="s1">MouseListener</span><span class="s0">, </span><span class="s1">MouseMotionListener {</span>
+    <span class="s0">private int </span><span class="s1">movingMessageX</span><span class="s0">;</span>
+
+    <span class="s0">private boolean </span><span class="s1">won</span><span class="s0">;</span>
+    <span class="s0">private boolean </span><span class="s1">gameOver</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">Upgrades upgrades</span><span class="s0">;</span>
+    <span class="s0">private </span><span class="s1">Timer timer</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">Rectangle button1</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">Rectangle button2</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">Rectangle button3</span><span class="s0">;</span>
+
+    <span class="s0">private boolean </span><span class="s1">upgrading</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">Room[] rooms</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">Player player</span><span class="s0">;</span>
+
+    <span class="s0">private boolean </span><span class="s1">selecting</span><span class="s0">;</span>
+
+    <span class="s0">private int </span><span class="s1">currentRoom</span><span class="s0">;</span>
+
+    <span class="s0">private </span><span class="s1">String message</span><span class="s0">;</span>
+
+    <span class="s0">private int </span><span class="s1">action</span><span class="s0">;</span>
+
+
+
+
+
+    <span class="s2">// constructor</span>
+    <span class="s0">public </span><span class="s1">AnimationPanel() {</span>
+        <span class="s2">// initialize variables</span>
+        <span class="s1">makeButtons()</span><span class="s0">;</span>
+
+        <span class="s1">message = </span><span class="s3">&quot;&quot;</span><span class="s0">;</span>
+        <span class="s1">won = </span><span class="s0">false;</span>
+        <span class="s1">gameOver = </span><span class="s0">false;</span>
+        <span class="s1">player = </span><span class="s0">new </span><span class="s1">Player()</span><span class="s0">;</span>
+        <span class="s1">addMouseListener(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">selecting = </span><span class="s0">false;</span>
+        <span class="s1">upgrading = </span><span class="s0">false;</span>
+        <span class="s1">upgrades = </span><span class="s0">new </span><span class="s1">Upgrades(player)</span><span class="s0">;</span>
+
+        <span class="s2">// initialize Timer object, responsible for the animation</span>
+        <span class="s1">timer = </span><span class="s0">new </span><span class="s1">Timer(</span><span class="s4">10</span><span class="s0">, this</span><span class="s1">)</span><span class="s0">; </span><span class="s2">// set timer to have 10ms pulses; each pulse triggers an ActionEvent</span>
+        <span class="s1">timer.start()</span><span class="s0">;</span>
+
+        <span class="s1">rooms = </span><span class="s0">new </span><span class="s1">Room[</span><span class="s4">10</span><span class="s1">]</span><span class="s0">;</span>
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s0">; </span><span class="s1">i &lt; </span><span class="s4">10</span><span class="s0">; </span><span class="s1">i++){</span>
+            <span class="s1">rooms[i] = </span><span class="s0">new </span><span class="s1">Room(i +</span><span class="s4">1</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s1">currentRoom = </span><span class="s4">0</span><span class="s0">;</span>
+        <span class="s1">game()</span><span class="s0">;</span>
+
+
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">makeButtons(){</span>
+        <span class="s1">button1 = </span><span class="s0">new </span><span class="s1">Rectangle(</span><span class="s4">225</span><span class="s0">,</span><span class="s4">775</span><span class="s0">,</span><span class="s4">200</span><span class="s0">,</span><span class="s4">75</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">button2 = </span><span class="s0">new </span><span class="s1">Rectangle(</span><span class="s4">475</span><span class="s0">,</span><span class="s4">775</span><span class="s0">,</span><span class="s4">200</span><span class="s0">,</span><span class="s4">75</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">button3 = </span><span class="s0">new </span><span class="s1">Rectangle(</span><span class="s4">725</span><span class="s0">,</span><span class="s4">775</span><span class="s0">,</span><span class="s4">200</span><span class="s0">,</span><span class="s4">75</span><span class="s1">)</span><span class="s0">;</span>
+
+
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">game() {</span>
+        <span class="s1">write(</span><span class="s3">&quot;You descend into a massive, scorched cavern, and encounter your first dragon. Press any button to begin&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+
+
+<span class="s2">//                combatTurn(rooms[i].getDragons(),i);</span>
+
+
+
+
+<span class="s2">//            Upgrades.rewards(player);</span>
+<span class="s2">//            introduction(i);</span>
+
+
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">write(String actualwords){</span>
+        <span class="s1">message = actualwords</span><span class="s0">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">// important method that is inherited from JComponent and overridden;</span>
+    <span class="s2">// this method automatically gets called by the graphics engine</span>
+    <span class="s2">// when the engine it detects that the panel needs to be redrawn/updated</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">paint(Graphics gp) {</span>
+        <span class="s0">super</span><span class="s1">.paint(gp)</span><span class="s0">; </span><span class="s2">// must do this!</span>
+        <span class="s1">Graphics2D g2d = (Graphics2D) gp</span><span class="s0">; </span><span class="s2">// cast gp to a 2D graphics object so we can do more advanced stuff</span>
+
+        <span class="s2">// draw blue message on screen</span>
+        <span class="s1">g2d.setColor(Color.blue)</span><span class="s0">;</span>
+        <span class="s1">Font myFont = </span><span class="s0">new </span><span class="s1">Font(</span><span class="s3">&quot;Arial&quot;</span><span class="s0">, </span><span class="s1">BOLD</span><span class="s0">, </span><span class="s4">14</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">g2d.setFont(myFont)</span><span class="s0">;</span>
+<span class="s2">//         message = &quot;Move orange square to gray! Dodge the red enemy!&quot;;</span>
+<span class="s2">//        if (won) {</span>
+<span class="s2">//            message = &quot;YOU WIN!!!!&quot;;</span>
+<span class="s2">//        }</span>
+<span class="s2">//        if (gameOver) {</span>
+<span class="s2">//            message = &quot;YOU LOSE!!!&quot;;</span>
+<span class="s2">//        }</span>
+         <span class="s2">// write message at location: (x, 100)</span>
+
+        <span class="s2">// draw gray target rectangle on the screen</span>
+        <span class="s2">// since it doesn't move, we can use a simple fillRect rather than create a Rectangle object</span>
+        <span class="s1">g2d.setColor(Color.BLACK)</span><span class="s0">;</span>
+        <span class="s1">g2d.fillRect(</span><span class="s4">0</span><span class="s0">, </span><span class="s4">0</span><span class="s0">, </span><span class="s4">1200</span><span class="s0">, </span><span class="s4">100</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">g2d.fillRect(</span><span class="s4">0</span><span class="s0">, </span><span class="s4">750</span><span class="s0">, </span><span class="s4">1200</span><span class="s0">, </span><span class="s4">150</span><span class="s1">)</span><span class="s0">;</span><span class="s2">// draw the top border</span>
+        <span class="s1">g2d.setColor(Color.darkGray)</span><span class="s0">;</span>
+        <span class="s1">g2d.fillRect(</span><span class="s4">225</span><span class="s0">,</span><span class="s4">775</span><span class="s0">,</span><span class="s4">200</span><span class="s0">,</span><span class="s4">75</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">g2d.fillRect(</span><span class="s4">475</span><span class="s0">,</span><span class="s4">775</span><span class="s0">,</span><span class="s4">200</span><span class="s0">,</span><span class="s4">75</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">g2d.fillRect(</span><span class="s4">725</span><span class="s0">,</span><span class="s4">775</span><span class="s0">,</span><span class="s4">200</span><span class="s0">,</span><span class="s4">75</span><span class="s1">)</span><span class="s0">;</span>
+
+        <span class="s1">g2d.draw(button1)</span><span class="s0">;</span>
+        <span class="s1">g2d.draw(button2)</span><span class="s0">;</span>
+        <span class="s1">g2d.draw(button3)</span><span class="s0">;</span>
+        <span class="s1">g2d.setColor(Color.LIGHT_GRAY)</span><span class="s0">;</span>
+        <span class="s1">g2d.drawString(message</span><span class="s0">, </span><span class="s4">50</span><span class="s0">, </span><span class="s4">50</span><span class="s1">)</span><span class="s0">;</span>
+
+
+    <span class="s1">}</span>
+
+
+    <span class="s2">// updates the x value for the string message by adding a small increment each time,</span>
+    <span class="s2">// and resetting back to the left edge when it moves off the screen</span>
+
+    <span class="s2">// updates the x and y values for the red rectangle by adding a small increment each time,</span>
+    <span class="s2">// and resetting to edges when it goes off the screen</span>
+
+
+    <span class="s2">// there is no easy way to automatically detect if two rectangles touch,</span>
+    <span class="s2">// so we must write a method to do that</span>
+
+
+
+    <span class="s2">// -------------- ActionListener interface method --------------</span>
+    <span class="s2">// called for each Timer event (occurs every 10ms)</span>
+    <span class="s2">// The timer + this method causes the animation to occur!</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">actionPerformed(ActionEvent e) {</span>
+        <span class="s2">// only move the message and the red enemy if the game is not over</span>
+
+        <span class="s1">repaint()</span><span class="s0">; </span><span class="s2">// forces the &quot;paint&quot; method above to be re-queued in the graphics engine</span>
+    <span class="s1">}</span>
+
+    <span class="s2">// -------------- MouseListener interface methods (5 required, only 2 used) --------------</span>
+    <span class="s2">// called when the mouse button is pressed in</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mousePressed(MouseEvent e) {</span>
+        <span class="s0">if </span><span class="s1">(selecting) {</span>
+            <span class="s1">write(</span><span class="s3">&quot;Please choose the dragon to target.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s0">if </span><span class="s1">(button1.contains(e.getPoint())) {</span>
+                <span class="s1">write(rooms[currentRoom].getDragons()[</span><span class="s4">0</span><span class="s1">].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getDragons()[</span><span class="s4">0</span><span class="s1">].getElement())))</span><span class="s0">;</span>
+                <span class="s1">selecting = </span><span class="s0">false;</span>
+
+
+            <span class="s1">}</span>
+            <span class="s2">//defend</span>
+            <span class="s0">if </span><span class="s1">(button2.contains(e.getPoint())&amp;&amp;(rooms[currentRoom].getDragons().length&gt;</span><span class="s4">1</span><span class="s1">)) {</span>
+                <span class="s1">write(rooms[currentRoom].getDragons()[</span><span class="s4">1</span><span class="s1">].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getDragons()[</span><span class="s4">1</span><span class="s1">].getElement())))</span><span class="s0">;</span>
+                <span class="s1">selecting = </span><span class="s0">false;</span>
+
+
+            <span class="s1">}</span>
+            <span class="s2">//evade</span>
+            <span class="s0">if </span><span class="s1">(button3.contains(e.getPoint())&amp;&amp;(rooms[currentRoom].getDragons().length&gt;</span><span class="s4">2</span><span class="s1">)) {</span>
+                <span class="s1">write(rooms[currentRoom].getDragons()[</span><span class="s4">2</span><span class="s1">].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getDragons()[</span><span class="s4">2</span><span class="s1">].getElement())))</span><span class="s0">;</span>
+                <span class="s1">selecting = </span><span class="s0">false;</span>
+
+            <span class="s1">}</span>
+            <span class="s2">//check for upgradin time</span>
+            <span class="s0">if </span><span class="s1">(rooms[currentRoom].dragonsDead()){</span>
+                <span class="s1">write(</span><span class="s3">&quot;You have slain all the dragons in the room and move to and find one of three rewards:&quot;</span><span class="s1">)</span><span class="s0">;</span>
+                <span class="s1">upgrading = </span><span class="s0">true;</span>
+
+            <span class="s1">}</span>
+
+        <span class="s1">} </span><span class="s0">else if </span><span class="s1">(upgrading){</span>
+            <span class="s1">System.out.println(</span><span class="s3">&quot;kk&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s1">write(upgrades.rewards())</span><span class="s0">;</span>
+
+            <span class="s0">if </span><span class="s1">(button1.contains(e.getPoint())) {</span>
+                <span class="s1">write(upgrades.doItem(upgrades.getOptions()[</span><span class="s4">0</span><span class="s1">]))</span><span class="s0">;</span>
+
+
+            <span class="s1">}</span>
+            <span class="s2">//defend</span>
+            <span class="s0">if </span><span class="s1">(button2.contains(e.getPoint())) {</span>
+                <span class="s1">write(upgrades.doItem(upgrades.getOptions()[</span><span class="s4">1</span><span class="s1">]))</span><span class="s0">;</span>
+
+            <span class="s1">}</span>
+            <span class="s2">//evade</span>
+            <span class="s0">if </span><span class="s1">(button3.contains(e.getPoint())) {</span>
+                <span class="s1">write(upgrades.doItem(upgrades.getOptions()[</span><span class="s4">2</span><span class="s1">]))</span><span class="s0">;</span>
+
+
+            <span class="s1">}</span>
+            <span class="s1">upgrading = </span><span class="s0">false;</span>
+            <span class="s1">currentRoom++</span><span class="s0">;</span>
+
+
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">write(</span><span class="s3">&quot;Choose to attack, defend, or start evading.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+            <span class="s2">//attack</span>
+            <span class="s0">if </span><span class="s1">(button1.contains(e.getPoint())) {</span>
+                <span class="s1">action = </span><span class="s4">1</span><span class="s0">;</span>
+                <span class="s1">selecting = </span><span class="s0">true;</span>
+                <span class="s1">write(</span><span class="s3">&quot;Please choose the dragon to target.&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+
+            <span class="s1">}</span>
+            <span class="s2">//defend</span>
+            <span class="s0">if </span><span class="s1">(button2.contains(e.getPoint())) {</span>
+                <span class="s1">write(</span><span class="s3">&quot;You chose to defend&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+            <span class="s1">}</span>
+            <span class="s2">//evade</span>
+            <span class="s0">if </span><span class="s1">(button3.contains(e.getPoint())) {</span>
+                <span class="s1">write(</span><span class="s3">&quot;You have begun to evade&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+
+            <span class="s1">}</span>
+
+        <span class="s1">}</span>
+
+    <span class="s1">}</span>
+
+    <span class="s2">// called when the mouse button is released</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mouseReleased(MouseEvent e) {</span>
+          <span class="s2">// (335, 365) is center point of gray target rect</span>
+
+        <span class="s2">// check if the orange rectangle contains the center point of the gray target, if so, the player</span>
+        <span class="s2">// has won and the orange rectangle should &quot;snap&quot; around the gray square</span>
+
+    <span class="s1">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mouseClicked(MouseEvent e) { } </span><span class="s2">// unused but needed for interface</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mouseEntered(MouseEvent e) { } </span><span class="s2">// unused but needed for interface</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mouseExited(MouseEvent e) { } </span><span class="s2">// unused but needed for interface</span>
+
+    <span class="s2">// -------------- MouseMotionListener interface methods (2 required, only 1 used) --------------</span>
+    <span class="s2">// called when user has clicked in and is dragging the mouse</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mouseDragged(MouseEvent e) { }</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">mouseMoved(MouseEvent e) { } </span><span class="s2">// unused but needed for interface</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

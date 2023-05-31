@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>Upgrades.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #cc7832;}
+.s2 { color: #6897bb;}
+.s3 { color: #6a8759;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Upgrades.java</font>
+</center></td></tr></table>
+<pre>
+<span class="s1">public class </span><span class="s0">Upgrades{</span>
+    <span class="s1">private </span><span class="s0">Player player</span><span class="s1">;</span>
+    <span class="s1">private int</span><span class="s0">[] upgradeselect</span><span class="s1">;</span>
+    <span class="s1">public </span><span class="s0">Upgrades(Player play){</span>
+        <span class="s0">player = play</span><span class="s1">;</span>
+        <span class="s0">upgradeselect = </span><span class="s1">new int</span><span class="s0">[</span><span class="s2">3</span><span class="s0">]</span><span class="s1">;</span>
+    <span class="s0">}</span>
+  <span class="s1">public </span><span class="s0">String rewards(){</span>
+    <span class="s0">String big = </span><span class="s3">&quot;&quot;</span><span class="s1">;</span>
+    <span class="s1">for </span><span class="s0">(</span><span class="s1">int </span><span class="s0">i = </span><span class="s2">0</span><span class="s1">; </span><span class="s0">i &lt; </span><span class="s2">3</span><span class="s1">; </span><span class="s0">i++){</span>
+      <span class="s0">upgradeselect[i] = (</span><span class="s1">int</span><span class="s0">)(Math.random()*</span><span class="s2">15</span><span class="s0">)+</span><span class="s2">1</span><span class="s1">;</span>
+     <span class="s0">big+=(getItem(upgradeselect[i])+</span><span class="s3">&quot;(&quot;</span><span class="s0">+(i+</span><span class="s2">1</span><span class="s0">)+</span><span class="s3">&quot;), &quot;</span><span class="s0">)</span><span class="s1">;</span>
+    <span class="s0">}</span>
+
+<span class="s4">//    doItem(choice,p);</span>
+    <span class="s1">return </span><span class="s0">big</span><span class="s1">;</span>
+  <span class="s0">}</span>
+  <span class="s1">public int</span><span class="s0">[] getOptions(){</span>
+        <span class="s1">return </span><span class="s0">upgradeselect</span><span class="s1">;</span>
+  <span class="s0">}</span>
+
+  <span class="s1">public </span><span class="s0">String getItem(</span><span class="s1">int </span><span class="s0">decide){</span>
+    <span class="s1">if </span><span class="s0">(</span><span class="s2">1 </span><span class="s0">&lt;= decide &amp;&amp; decide &lt;= </span><span class="s2">2</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;health potion&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">3 </span><span class="s0">|| decide == </span><span class="s2">4</span><span class="s0">){</span>
+       <span class="s1">return </span><span class="s3">&quot;life crystal&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">5</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;flaming edge (sword upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">6</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;chilling edge (sword upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">7</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;electric edge (sword upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">8</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;earthen edge (sword upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">9</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;elemental nullifier (sword tradeoff)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">10</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;magical whetstone (sword upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">11</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;better metal (armor upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">12</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;heavier plating (armor upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">13</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;wind enchantment (armor upgrade)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">14</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;remove armor (armor tradeoff)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">15</span><span class="s0">){</span>
+      <span class="s1">return </span><span class="s3">&quot;sacrificial blade (weapon tradeoff)&quot;</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">return </span><span class="s3">&quot;not happening&quot;</span><span class="s1">;</span>
+  <span class="s0">}</span>
+  <span class="s1">public </span><span class="s0">String doItem(</span><span class="s1">int </span><span class="s0">decide){</span>
+   <span class="s1">if </span><span class="s0">(</span><span class="s2">1 </span><span class="s0">&lt;= decide &amp;&amp; decide &lt;= </span><span class="s2">2</span><span class="s0">){</span>
+      <span class="s0">player.fullHp()</span><span class="s1">;</span>
+     <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;You drink the potion and heal to full hp&quot;</span><span class="s0">)</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">3 </span><span class="s0">|| decide == </span><span class="s2">4</span><span class="s0">){</span>
+        <span class="s0">player.setMax(player.getMax()+</span><span class="s2">50</span><span class="s0">)</span><span class="s1">;</span>
+        <span class="s0">player.hpMore(</span><span class="s2">50</span><span class="s0">)</span><span class="s1">;</span>
+            <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;You crush the crystal and gain 50 max hp, healing 50 hp as well&quot;</span><span class="s0">)</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">5</span><span class="s0">){</span>
+          <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+          <span class="s0">thing[</span><span class="s2">1</span><span class="s0">] += </span><span class="s2">4</span><span class="s1">;</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;Your sword now deals 4 more fire damage&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">6</span><span class="s0">){</span>
+          <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+          <span class="s0">thing[</span><span class="s2">2</span><span class="s0">] += </span><span class="s2">4</span><span class="s1">;</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+          <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;Your sword now deals 4 more frost damage&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">7</span><span class="s0">){</span>
+          <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+          <span class="s0">thing[</span><span class="s2">3</span><span class="s0">] += </span><span class="s2">4</span><span class="s1">;</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+          <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;Your sword now deals 4 more lightning damage&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">8</span><span class="s0">){</span>
+          <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+          <span class="s0">thing[</span><span class="s2">0</span><span class="s0">] += </span><span class="s2">4</span><span class="s1">;</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+          <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;Your sword now deals 4 more earth damage&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">9</span><span class="s0">){</span>
+           <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+            <span class="s1">int </span><span class="s0">sum = </span><span class="s2">0</span><span class="s1">;</span>
+            <span class="s1">for </span><span class="s0">(</span><span class="s1">int </span><span class="s0">i = </span><span class="s2">0</span><span class="s1">; </span><span class="s0">i &lt; </span><span class="s2">5</span><span class="s1">; </span><span class="s0">i++){</span>
+            <span class="s0">sum += thing[i]</span><span class="s1">;</span>
+            <span class="s0">thing[i]= </span><span class="s2">0</span><span class="s1">;</span>
+      <span class="s0">}</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+            <span class="s0">thing[</span><span class="s2">4</span><span class="s0">]+= sum + </span><span class="s2">2</span><span class="s1">;</span>
+
+
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;All your sword's elemental damage has become normal plus two.&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">10</span><span class="s0">){</span>
+           <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+           <span class="s0">thing[</span><span class="s2">5</span><span class="s0">] += </span><span class="s2">4</span><span class="s1">;</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;Your sword now deals 4 more normal damage&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">11</span><span class="s0">){</span>
+        <span class="s0">player.getArmor().setDefense(player.getArmor().getDefense()+</span><span class="s2">3</span><span class="s0">)</span><span class="s1">;</span>
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;You replace the metal in your armor, granting plus 3 defense.&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">12</span><span class="s0">){</span>
+        <span class="s0">player.getArmor().setDefense((</span><span class="s1">int</span><span class="s0">)(player.getArmor().getDefense()*</span><span class="s2">1.5</span><span class="s0">))</span><span class="s1">;</span>
+        <span class="s0">player.getArmor().setDodge((</span><span class="s1">int</span><span class="s0">)(player.getArmor().getDodge()/</span><span class="s2">2</span><span class="s0">))</span><span class="s1">;</span>
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;You add more plates of metal to your armor, granting 1.5 times defense but halved dodge chance.&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">13</span><span class="s0">){</span>
+        <span class="s0">player.getArmor().setDodge(player.getArmor().getDodge()+</span><span class="s2">15</span><span class="s0">)</span><span class="s1">;</span>
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;You add a rune of wind to your armor, adding 15 percent to your dodge chance.&quot;</span><span class="s0">)</span><span class="s1">;</span>
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">14</span><span class="s0">){</span>
+        <span class="s0">player.getArmor().setDefense((</span><span class="s1">int</span><span class="s0">)(</span><span class="s2">0</span><span class="s0">))</span><span class="s1">;</span>
+        <span class="s0">player.getArmor().setDodge((</span><span class="s1">int</span><span class="s0">)(player.getArmor().getDodge()*</span><span class="s2">2</span><span class="s0">))</span><span class="s1">;</span>
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;You throw off practically all of your armor, doubling dodge chance but removing all defense.&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">if </span><span class="s0">(decide == </span><span class="s2">15</span><span class="s0">){</span>
+          <span class="s1">int</span><span class="s0">[] thing = player.getSword().getDamages()</span><span class="s1">;</span>
+          <span class="s0">thing[</span><span class="s2">4</span><span class="s0">] += </span><span class="s2">8</span><span class="s1">;</span>
+        <span class="s0">player.getSword().setDamages(thing)</span><span class="s1">;</span>
+        <span class="s0">player.hpMore(-</span><span class="s2">25</span><span class="s0">)</span><span class="s1">;</span>
+
+           <span class="s1">return </span><span class="s0">(</span><span class="s3">&quot;Your sword now deals 8 more physical damage, but you lose 25 hp.&quot;</span><span class="s0">)</span><span class="s1">;</span>
+
+    <span class="s0">}</span>
+    <span class="s1">return </span><span class="s3">&quot;never&quot;</span><span class="s1">;</span>
+  <span class="s0">}</span>
+  
+
+
+
+  
+<span class="s0">}</span></pre>
+</body>
+</html>
