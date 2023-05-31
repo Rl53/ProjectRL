@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 // at 7:32 part 4 !!!!
-!!!!1111
+
 public class GUI {
     GameManager g;
     JFrame window;
@@ -43,12 +43,12 @@ public class GUI {
         background[num].setBounds(50,185,800,350);
         background[num].setBackground(Color.black);
         background[num].setLayout(null);
-        window.add(background[1]);
-        backgroundLabel[1] = new JLabel();
-        backgroundLabel[1].setBounds(0,0,800,350);
+        window.add(background[num]);
+        backgroundLabel[num] = new JLabel();
+        backgroundLabel[num].setBounds(0,0,800,350);
 
         ImageIcon bgI = new ImageIcon(getClass().getClassLoader().getResource(bgFile));
-        backgroundLabel[1].setIcon(bgI);
+        backgroundLabel[num].setIcon(bgI);
     }
 
     public void createObj(int num, int x, int y, int width, int height, String fileName, String choice, String command) {
@@ -116,9 +116,15 @@ public class GUI {
         createObj(1,450,-185,600,800,"bagi652r8p5rtheitedk0vmidk_50.png","Continue","talkMore");
         addArrow(1,-85,-200,800,800,"clipart21503_1_15.png","goBG2");
         background[1].add(backgroundLabel[1]);
+
+        makeBG(2, "cave-2604672_1280.jpg");
+        addArrow(1,-85,-200,800,800,"clipart21503_1_15.png","goBG2");
+        background[2].add(backgroundLabel[2]);
     }
+
+
 }
-// at 7:32 part 4 !!!!
+
 
 
 
