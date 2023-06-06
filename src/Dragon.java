@@ -1,61 +1,32 @@
 
 import java.awt.Rectangle;
 
-public class  Dragon{
-  private int maxHp;
-  private int hp;
-  private int damage;
-  private String element;
+public class  Dragon extends Monster{
   private boolean breath;
 
-  private Rectangle rect;
 
 
 
 
-  public Dragon(String elder){
+  public Dragon(String elder, int mHp, int h, int d, int rW, int rL, String s, boolean b){
+    super(elder, mHp, h, d, rW, rL, s);
     breath = false;
-    maxHp = 30;
-    hp = 30;
-    damage = 15;
-    rect = new Rectangle(100,100);
-    int value = (int)(Math.random() * 4)+1;
-    if (value == 1){
-      element = "fire";
-    } else if (value == 2){
-      element = "ice";
-    } else if (value == 3){
-      element = "lightning";
-    } else if (value == 4){
-      element = "earth";
-    }
-    if (elder.equals("elder")){
-      hp = 90;
-      maxHp = 90;
-      damage = 30;
-    }
     
   }
   
-  public String getElement(){
-    return element;
-  }
-  
-  public int getHp(){
-    return hp;
-  }
+
 
   public boolean isBreath(){
     return breath;
   }
 
-  public Rectangle getBody(){ return rect;}
+
 
   public int attack(int b){
     if (breath == true){
       breath = false;
-      System.out.println("Dragon " + (b+1) +" breaths out a blast of "+element+".");
-      return damage * 2;
+      System.out.println("Dragon " + (b+1) +" breaths out a blast of "+getElement()+".");
+      return getDamage() * 2;
     }
     int value = (int)(Math.random() * 4)+1;
     if (value == 1){
@@ -69,24 +40,9 @@ public class  Dragon{
     }if (extra == 3){
       System.out.println("Dragon " + (b+1)+ " bites down on you.");
     }
-    return damage;
-  }
-  public String takeDamage(int damaged){
-    hp -= damaged;
-    if (hp <= 0){
-      return "That "+element+ " dragon has died!";
-    }
-    return "You deal "+damaged+ " damage.";
+    return getDamage();
   }
 
-  public boolean isDead(){
-    if (hp <= 0){
-      return true;
-    }
-    return false;
-  }
-
-  
   
 
 

@@ -77,7 +77,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseListe
 
     }
     public void game() {
-        write("You descend into a massive, scorched cavern, and encounter your first dragon. Press any button to begin");
+        write("You descend into a massive, scorched cavern, and encounter your first enemy. Press any button to begin");
 
 
 
@@ -164,29 +164,29 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseListe
     @Override
     public void mousePressed(MouseEvent e) {
         if (selecting) {
-            write("Please choose the dragon to target.");
+            write("Please choose a mob to target.");
             if (button1.contains(e.getPoint())) {
-                write(rooms[currentRoom].getDragons()[0].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getDragons()[0].getElement())));
+                write(rooms[currentRoom].getMonsters()[0].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getMonsters()[0].getElement())));
                 selecting = false;
 
 
             }
             //defend
-            if (button2.contains(e.getPoint())&&(rooms[currentRoom].getDragons().length>1)) {
-                write(rooms[currentRoom].getDragons()[1].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getDragons()[1].getElement())));
+            if (button2.contains(e.getPoint())&&(rooms[currentRoom].getMonsters().length>1)) {
+                write(rooms[currentRoom].getMonsters()[1].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getMonsters()[1].getElement())));
                 selecting = false;
 
 
             }
             //evade
-            if (button3.contains(e.getPoint())&&(rooms[currentRoom].getDragons().length>2)) {
-                write(rooms[currentRoom].getDragons()[2].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getDragons()[2].getElement())));
+            if (button3.contains(e.getPoint())&&(rooms[currentRoom].getMonsters().length>2)) {
+                write(rooms[currentRoom].getMonsters()[2].takeDamage(player.getSword().dealDamage(rooms[currentRoom].getMonsters()[2].getElement())));
                 selecting = false;
 
             }
             //check for upgradin time
-            if (rooms[currentRoom].dragonsDead()){
-                write("You have slain all the dragons in the room and move to and find one of three rewards:");
+            if (rooms[currentRoom].monsterDead()){
+                write("You have slain all the enemies in the room and move to and find one of three rewards:");
                 upgrading = true;
 
             }
@@ -221,7 +221,7 @@ public class AnimationPanel extends JPanel implements ActionListener, MouseListe
             if (button1.contains(e.getPoint())) {
                 action = 1;
                 selecting = true;
-                write("Please choose the dragon to target.");
+                write("Please choose a mob to target.");
 
 
             }

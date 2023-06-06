@@ -1,44 +1,45 @@
 public class Room{
-  Dragon[] dragons;
+  Monster[] monsters;
 
 
   public Room(int counter){
+    // species will randomize and change after adding more classes
     if (counter < 4){
-      Dragon dragon1 = new Dragon("");
-      Dragon[] drag = {dragon1};
-      dragons = drag;
+      Dragon m1 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Monster[] m = {m1};
+      monsters = m;
     } else if (counter < 7) {
-      Dragon dragon1 = new Dragon("");
-      Dragon dragon2 = new Dragon("");
-      Dragon[] drag = {dragon1,dragon2};
-      dragons = drag;
+      Dragon m1 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Dragon m2 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Monster[] m = {m1,m2};
+      monsters = m;
     } else if (counter < 10){
-      Dragon dragon1 = new Dragon("");
-      Dragon dragon2 = new Dragon("");
-      Dragon dragon3 = new Dragon("");
-      Dragon[] drag = {dragon1,dragon2,dragon3};
-      dragons = drag;
+      Dragon m1 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Dragon m2 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Dragon m3 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Monster[] m = {m1,m2,m3};
+      monsters = m;
     } else if (counter == 10){
-      Dragon dragon1 = new Dragon("elder");
-         Dragon[] drag = {dragon1};
-         dragons = drag;
+      Dragon dragon1 = new Dragon("elder",30,30,10,400,400,"dragon", false);
+      Monster[] m = {dragon1};
+      monsters = m;
     }
   }
-  public boolean dragonsDead(){
-    for (int i = 0; i < dragons.length; i++){
-      if (dragons[i].isDead()==false){
+  public boolean monsterDead(){
+    for (int i = 0; i < monsters.length; i++){
+      if (!monsters[i].isDead()){
         return false;
       }
     }
     return true;
   }
-  public Dragon[] getDragons(){
-    return dragons;
+  public Monster[] getMonsters(){
+    return monsters;
   }
   public void targetList(){
-    System.out.print("Which dragon do you attack, ");
-    for (int i = 0; i < dragons.length; i++){
-    System.out.print("the " + dragons[i].getElement()+ " dragon"+"("+(i+1)+"), ");
+    System.out.print("Which creature do you attack, ");
+    for (int i = 0; i < monsters.length; i++){
+    System.out.print("the " + monsters[i].getElement()+ monsters[i].getSpecies() +"("+(i+1)+"), ");
       }
     System.out.println("?");
   }
