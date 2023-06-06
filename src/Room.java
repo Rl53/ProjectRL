@@ -10,13 +10,13 @@ public class Room{
       Monster[] m = {m1};
       monsters = m;
     } else if (counter < 7) {
-      Dragon m1 = new Dragon("",40,40,10,400,400,"dragon", false);
-      Goblin m2 = new Goblin("",30,30,10,400,400,"goblin", false);
+      Orc m1 = new Orc("",40,40,10,400,400,"orc");
+      Goblin m2 = new Goblin("",30,30,10,400,400,"goblin");
       Monster[] m = {m1,m2};
       monsters = m;
     } else if (counter < 10){
-      Dragon m1 = new Dragon("",30,30,10,400,400,"dragon", false);
-      Dragon m2 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Orc m1 = new Orc("",30,30,10,400,400,"orc");
+      Orc m2 = new Orc("",30,30,10,400,400,"orc");
       Dragon m3 = new Dragon("",30,30,10,400,400,"dragon", false);
       Monster[] m = {m1,m2,m3};
       monsters = m;

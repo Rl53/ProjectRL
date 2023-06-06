@@ -8,7 +8,7 @@ public class Goblin extends Monster{
 
 
 
-    public Goblin(String elder, int mHp, int h, int d, int rW, int rL, String s, boolean b){
+    public Goblin(String elder, int mHp, int h, int d, int rW, int rL, String s){
         super(elder, mHp, h, d, rW, rL, s);
         int rand = (int) (Math.random() * 3);
         potions = rand * 2;
