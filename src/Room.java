@@ -4,13 +4,14 @@ public class Room{
 
   public Room(int counter){
     // species will randomize and change after adding more classes
+
     if (counter < 4){
-      Dragon m1 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Dragon m1 = new Dragon("",40,40,10,400,400,"dragon", false);
       Monster[] m = {m1};
       monsters = m;
     } else if (counter < 7) {
-      Dragon m1 = new Dragon("",30,30,10,400,400,"dragon", false);
-      Dragon m2 = new Dragon("",30,30,10,400,400,"dragon", false);
+      Dragon m1 = new Dragon("",40,40,10,400,400,"dragon", false);
+      Goblin m2 = new Goblin("",30,30,10,400,400,"goblin", false);
       Monster[] m = {m1,m2};
       monsters = m;
     } else if (counter < 10){

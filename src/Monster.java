@@ -44,6 +44,10 @@ public class Monster {
         return hp;
     }
 
+    public void changeHP(int newHp) {
+        hp = newHp;
+    }
+
     public int getDamage() {
         return damage;
     }

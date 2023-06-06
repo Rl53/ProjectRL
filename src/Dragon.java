@@ -1,7 +1,7 @@
 
 import java.awt.Rectangle;
 
-public class  Dragon extends Monster{
+public class Dragon extends Monster{
   private boolean breath;
 
 
@@ -21,9 +21,9 @@ public class  Dragon extends Monster{
   }
 
 
-
+  @ Override
   public int attack(int b){
-    if (breath == true){
+    if (breath){
       breath = false;
       System.out.println("Dragon " + (b+1) +" breaths out a blast of "+getElement()+".");
       return getDamage() * 2;
@@ -42,13 +42,5 @@ public class  Dragon extends Monster{
     }
     return getDamage();
   }
-
-  
-
-
-
-
-
-
   
 }
